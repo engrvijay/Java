@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jtcp-server-deply
+spec:
+  replicas: 1
+  selector: 
+    matchLabels:
+      app: java-tcp-server
+  template:
+    metadata:
+      labels:
+        app: java-tcp-server
+    spec:
+      containers:
+      - name: java-tcp-server
+        image: linxitcld/linxits_jtcpserver:latest
+        resources:
+          limits:
+             memory: "265Mi"
+             cpu: "500m"
+        ports:
+        - containerPort: 6066 
