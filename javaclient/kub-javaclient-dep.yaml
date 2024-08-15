@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jtcp-client-deply
+spec:
+  replicas: 1
+  selector: 
+    matchLabels:
+      app: java-tcp-client
+  template:
+    metadata:
+      labels:
+        app: java-tcp-client
+    spec:
+      containers:
+      - name: java-tcp-client
+        image: linxitcld/linxits_jtcpclient:latest
+        args: ["java-tcp-server","6066"]
+        resources:
+          limits:
+             memory: "265Mi"
+             cpu: "500m"
